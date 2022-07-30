@@ -21,6 +21,7 @@
     "react-icons": "^4.4.0"
   },
   "devDependencies": {
+    "@emotion/babel-plugin": "^11.9.5",
     "eslint": "8.20.0",
     "eslint-config-next": "12.2.3"
   }
