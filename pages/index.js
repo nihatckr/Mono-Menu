@@ -41,7 +41,7 @@ export default function Home() {
   if (error)
     return (
       <Flex width={"full"}>
-        <Text>Error</Text>
+        <Text>Error:(</Text>
       </Flex>
     );
 
