@@ -1,18 +1,17 @@
-import { extendTheme } from '@chakra-ui/react'
-import { createBreakpoints } from '@chakra-ui/theme-tools'
+import { extendTheme } from "@chakra-ui/react";
 
-import { colors } from './colors';
-import { styles } from './styles';
-import { Heading, Text, fonts, textStyles } from './typography';
+import { colors } from "./colors";
+import { styles } from "./styles";
+import { Heading, Text, fonts, textStyles } from "./typography";
 
-const breakpoints = createBreakpoints({
-  sm: '30em',
-  md: '48em',
-  lg: '62em',
-  xl: '80em',
-  '2xl': '90em',
-  '3xl': '120em'
-});
+const breakpoints = {
+  sm: "30em",
+  md: "48em",
+  lg: "62em",
+  xl: "80em",
+  "2xl": "90em",
+  "3xl": "120em",
+};
 const overrides = {
   colors,
   styles,
@@ -25,6 +24,6 @@ const overrides = {
     Text,
     // Other components go here
   },
-}
+};
 
-export default extendTheme(overrides)
+export default extendTheme(overrides);

@@ -1,8 +1,9 @@
 import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
-import theme from "../../test/styles/Theming";
-import Fonts from "../../test/styles/Theming/fonts";
+
 import { AnimatePresence } from "framer-motion";
 import { ChakraProvider } from "@chakra-ui/react";
+import theme from "../styles/theming";
+import Fonts from "../styles/theming/fonts";
 
 const client = new ApolloClient({
   uri: process.env.NEXT_PUBLIC_BACKEND,

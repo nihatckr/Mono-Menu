@@ -57,6 +57,7 @@ const MenuTitle = () => {
                 variant='outline'
                 cursor={"pointer"}
                 mr={2}
+                p={1}
                 colorScheme={slug === attributes.slug ? "red" : " "}
               >
                 <Avatar
