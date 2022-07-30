@@ -1,9 +1,9 @@
-import { VStack, Icon, Flex } from "@chakra-ui/react";
+import { VStack, Flex } from "@chakra-ui/react";
 import { motion } from "framer-motion";
 import Head from "next/head";
 import React from "react";
 import Header from "../Header";
-import LogoMono from "../Logo";
+import MonoLogo from "../Logo";
 
 const pageTransition = {
   initial: {
@@ -27,13 +27,13 @@ const Layout = ({ children }) => {
       exit={{ opacity: 0, transition: { duration: 3 } }}
     >
       <Head>
-        <title>Mono Menu App</title>
+        <title>Mono Hotel Menu</title>
         <meta name='description' content='Mono Hotel Terrace' />
         <link rel='icon' href='/favicon.ico' />
       </Head>
       <VStack w='full' margin={"auto"}>
         <Header>
-          <Icon as={LogoMono} />
+          <MonoLogo width={"22px"} height={"22px"} />
         </Header>
       </VStack>
       <VStack w='full' maxW='63.75rem' margin={"auto"}>

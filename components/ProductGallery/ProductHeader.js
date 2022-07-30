@@ -1,4 +1,4 @@
-import { VStack, Flex, Heading, Icon, Link, Box } from "@chakra-ui/react";
+import { Flex, Heading, Icon, Link } from "@chakra-ui/react";
 import { motion } from "framer-motion";
 import NextLink from "next/link";
 import { IoReturnUpBackSharp } from "react-icons/io5";

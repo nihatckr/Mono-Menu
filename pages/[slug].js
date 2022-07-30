@@ -1,4 +1,4 @@
-import { Flex, Grid, Heading, HStack, Spinner } from "@chakra-ui/react";
+import { Flex, Grid, Text, Spinner } from "@chakra-ui/react";
 import { gql, useQuery } from "@apollo/client";
 import { useRouter } from "next/router";
 
@@ -67,8 +67,18 @@ const Product = () => {
   const products = data?.products.data;
   const productTitle = data?.products.data[0];
 
-  if (loading) return <Spinner />;
-  if (error) return <Heading>Error :(</Heading>;
+  if (loading)
+    return (
+      <Flex width={"full"}>
+        <Spinner />
+      </Flex>
+    );
+  if (error)
+    return (
+      <Flex width={"full"}>
+        <Text>Error</Text>
+      </Flex>
+    );
 
   return (
     <Layout>
@@ -89,7 +99,7 @@ const Product = () => {
           <ProductHeader productTitle={productTitle} />
           <MenuTitle />
         </Flex>
-        <Flex marginTop={"13rem"} width={"full"}>
+        <Flex marginTop={"15rem"} width={"full"}>
           <Grid templateColumns='repeat(1, 1fr)' gap={0} width={"full"}>
             {products.map((product, i) => {
               const { id, attributes } = product;

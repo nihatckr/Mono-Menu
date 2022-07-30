@@ -8,6 +8,8 @@ import {
   Wrap,
   WrapItem,
   Spinner,
+  Text,
+  Flex,
 } from "@chakra-ui/react";
 import { motion } from "framer-motion";
 import { useRouter } from "next/router";
@@ -21,8 +23,18 @@ const MenuTitle = () => {
   const router = useRouter();
   const slug = router.query.slug;
 
-  if (loading) return <Spinner />;
-  if (error) return <p>Error :(</p>;
+  if (loading)
+    return (
+      <Flex width={"full"}>
+        <Spinner />
+      </Flex>
+    );
+  if (error)
+    return (
+      <Flex width={"full"}>
+        <Text>Error</Text>
+      </Flex>
+    );
 
   return (
     <Wrap

@@ -39,7 +39,7 @@ const Header = ({ children }) => {
       >
         <Flex w='full' alignItems={"center"} maxW='63.75rem'>
           <Box w='full' h='1px' color={"red.500"} bgColor='gray.900' />
-          <Flex margin='auto' as={motion.div} variants={logoAnimate}>
+          <Flex margin='auto' as={motion.div} variants={logoAnimate} px={2}>
             {children}
           </Flex>
           <Box w='full' h='1px' color={"red.500"} bgColor='gray.800' />

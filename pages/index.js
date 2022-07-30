@@ -1,5 +1,5 @@
 import { useQuery, gql } from "@apollo/client";
-import { SimpleGrid, Spinner } from "@chakra-ui/react";
+import { SimpleGrid, Spinner, Text, Flex } from "@chakra-ui/react";
 import CategoryGallery from "../components/CategoryGallery";
 import Layout from "../components/Layout";
 
@@ -32,8 +32,18 @@ export const GET_CATEGORİES = gql`
 export default function Home() {
   const { loading, error, data } = useQuery(GET_CATEGORİES);
 
-  if (loading) return <Spinner />;
-  if (error) return <p>Error :(</p>;
+  if (loading)
+    return (
+      <Flex width={"full"}>
+        <Spinner />
+      </Flex>
+    );
+  if (error)
+    return (
+      <Flex width={"full"}>
+        <Text>Error</Text>
+      </Flex>
+    );
 
   return (
     <Layout>

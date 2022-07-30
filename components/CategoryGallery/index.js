@@ -1,7 +1,7 @@
 import NextLink from "next/link";
 import { Box, Flex, Heading, Image, Link, Text } from "@chakra-ui/react";
 import { motion } from "framer-motion";
-import NextImage from "next/image";
+
 const CategoryGallery = ({ ...props }) => {
   const fadeUp = {
     initial: { translateY: 200, opacity: 0 },

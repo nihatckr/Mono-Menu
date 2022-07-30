@@ -1,7 +1,7 @@
 import { Flex, Heading, Image, Text, GridItem, Box } from "@chakra-ui/react";
 import { motion } from "framer-motion";
 import React from "react";
-import TrIcon from "../Logo/TrIcon";
+import TurkishLiraIcon from "../Logo/TurkishLiraIcon";
 
 const ProductCategory = ({ ...props }) => {
   const fadeUp = {
@@ -70,7 +70,7 @@ const ProductCategory = ({ ...props }) => {
               <Flex>
                 <Flex width={"full"} alignItems={"start"}>
                   <Flex alignItems={"center"}>
-                    <TrIcon />
+                    <TurkishLiraIcon width={"8px"} height={"8px"} />
                     <Heading as='h3' variant='h3' color='primary.black'>
                       {props.attributes.price}
                     </Heading>

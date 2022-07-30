@@ -26,4 +26,4 @@ const overrides = {
   },
 };
 
-export default extendTheme(overrides);
+export const theme = extendTheme(overrides);
