@@ -1,6 +1,6 @@
-import { Box, HStack, Flex } from "@chakra-ui/react";
-import { motion } from "framer-motion";
 import React from "react";
+import { motion } from "framer-motion";
+import styled from "styled-components";
 
 const titleAnimate = {
   initial: { y: -250, opacity: 0 },
@@ -15,37 +15,45 @@ const logoAnimate = {
   },
 };
 
+const FlexContainer = styled.div`
+  display: flex;
+  margin-top: 20px;
+  margin-bottom: 20px;
+`;
+
+const Flex = styled(motion.div)`
+  display: flex;
+  width: 100%;
+  align-items: center;
+`;
+
+const LogoWrap = styled(motion.div)`
+  padding-left: 10px;
+  padding-right: 10px;
+`;
+
+const Span = styled.span`
+  width: 100%;
+  height: 1px;
+  background-color: black;
+`;
+
 const Header = ({ children }) => {
   return (
-    <HStack
-      spacing={0}
-      direction={"column"}
-      w='full'
-      display='flex'
-      minH='3.25rem'
-      alignItems={"center"}
-      position={"fixed"}
-      background={"white"}
-      zIndex={2}
-    >
+    <FlexContainer>
       <Flex
         w={"full"}
-        alignItems={"center"}
         as={motion.div}
         variants={titleAnimate}
         initial={"initial"}
         animate={"animate"}
         flexDir={"column"}
       >
-        <Flex w='full' alignItems={"center"} maxW='63.75rem'>
-          <Box w='full' h='1px' color={"red.500"} bgColor='gray.900' />
-          <Flex margin='auto' as={motion.div} variants={logoAnimate} px={2}>
-            {children}
-          </Flex>
-          <Box w='full' h='1px' color={"red.500"} bgColor='gray.800' />
-        </Flex>
+        <Span />
+        <LogoWrap variants={logoAnimate}>{children}</LogoWrap>
+        <Span />
       </Flex>
-    </HStack>
+    </FlexContainer>
   );
 };
 

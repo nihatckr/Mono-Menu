@@ -1,6 +1,6 @@
-import { Flex, Heading, Icon, Link } from "@chakra-ui/react";
-import { motion } from "framer-motion";
 import NextLink from "next/link";
+import { motion } from "framer-motion";
+import styled from "styled-components";
 import { IoReturnUpBackSharp } from "react-icons/io5";
 
 const ProductHeader = ({ ...props }) => {
@@ -34,48 +34,53 @@ const ProductHeader = ({ ...props }) => {
   };
   console.log(props.productTitle.attributes.category.data.attributes);
   return (
-    <Flex
-      display={"flex"}
-      as={motion.div}
-      initial={"initial"}
-      animate={"animate"}
-      flexDir='row'
-      mb={"0.5rem"}
-      width={"full"}
-      pr={"16px"}
-      justifyContent='space-between'
-    >
-      <Flex flexDir='column' width={"full"}>
-        <Heading
-          as={motion.h1}
-          color='primary.black'
-          variant={"h3"}
+    <FlexContainer initial={"initial"} animate={"animate"}>
+      <FlexWrap>
+        <HeadingTitle
           initial={"initial"}
           animate={"animate"}
           variants={titleAnimate}
         >
           {props.productTitle.attributes.category.data.attributes.title}
-        </Heading>
-        <Heading
-          as={motion.h1}
-          variants={subtitleAnimate}
-          color='primary.gray'
-          variant={"h3"}
-        >
+        </HeadingTitle>
+        <HeadingSubtitle variants={subtitleAnimate}>
           {props.productTitle.attributes.category.data.attributes.subtitle}
-        </Heading>
-      </Flex>
-      <Link as={NextLink} href={"/"}>
-        <Flex as={motion.div} variants={linkAnimate}>
-          <Icon
-            as={IoReturnUpBackSharp}
-            boxSize={{ base: 6, sm: 10, md: 12, lg: 14 }}
-            color={"red"}
-          />
-        </Flex>
+        </HeadingSubtitle>
+      </FlexWrap>
+      <Link href={"/"}>
+        <FlexWrap variants={linkAnimate}>
+          <IoReturnUpBackSharp size={"34px"} color={"red"} />
+        </FlexWrap>
       </Link>
-    </Flex>
+    </FlexContainer>
   );
 };
 
 export default ProductHeader;
+const FlexContainer = styled(motion.div)`
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+`;
+const FlexWrap = styled(motion.div)`
+  display: flex;
+  flex-direction: column;
+`;
+const Link = styled(NextLink)``;
+const HeadingTitle = styled(motion.h1)`
+  margin: 0;
+  padding: 0;
+  color: ${(props) => props.theme.light.colors.title};
+  font-weight: ${(props) => props.theme.fontWeight.md};
+  line-height: ${(props) => props.theme.lineHeight.xxl};
+  text-transform: uppercase;
+  margin-bottom: 6px;
+`;
+const HeadingSubtitle = styled(motion.h2)`
+  margin: 0;
+  padding: 0;
+  color: ${(props) => props.theme.light.colors.subtitle};
+  font-weight: ${(props) => props.theme.fontWeight.md};
+  line-height: ${(props) => props.theme.lineHeight.xxl};
+  text-transform: uppercase;
+`;

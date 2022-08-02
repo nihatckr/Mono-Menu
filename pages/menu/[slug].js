@@ -1,15 +1,16 @@
-import { Flex, Grid, Text, Spinner } from "@chakra-ui/react";
 import { gql, useQuery } from "@apollo/client";
 import { useRouter } from "next/router";
 
 import { useEffect } from "react";
-import Layout from "../components/Layout";
+import Layout from "../../components/Layout";
 
 import { motion } from "framer-motion";
 
-import ProductCategory from "../components/ProductGallery";
-import ProductHeader from "../components/ProductGallery/ProductHeader";
-import MenuTitle from "../components/MenuTitle";
+import ProductCategory from "../../components/ProductGallery";
+import ProductHeader from "../../components/ProductGallery/ProductHeader";
+import MenuTitle from "../../components/MenuTitle";
+import styled, { keyframes } from "styled-components";
+import { IoSync } from "react-icons/io5";
 
 const GET_PRODUCTS = gql`
   query Products($filters: ProductFiltersInput) {
@@ -69,47 +70,64 @@ const Product = () => {
 
   if (loading)
     return (
-      <Flex width={"full"}>
-        <Spinner />
-      </Flex>
+      <Rotate>
+        <IoSync />
+      </Rotate>
     );
-  if (error)
-    return (
-      <Flex width={"full"}>
-        <Text>Error</Text>
-      </Flex>
-    );
+  if (error) return <Text>Error</Text>;
 
   return (
     <Layout>
-      <Flex
-        width='full'
-        as={motion.div}
+      <FlexWrap
         exit={{ opacity: 0 }}
         animate={"animate"}
         initial={"initial"}
         position={"relative"}
       >
-        <Flex
-          position={"fixed"}
-          marginTop='3.25rem'
-          bgColor={"white"}
-          flexDir={"column"}
-        >
+        <ProductHeaderContainer>
           <ProductHeader productTitle={productTitle} />
           <MenuTitle />
-        </Flex>
-        <Flex marginTop={"15rem"} width={"full"}>
-          <Grid templateColumns='repeat(1, 1fr)' gap={0} width={"full"}>
-            {products.map((product, i) => {
-              const { id, attributes } = product;
-              return <ProductCategory key={id} i={i} attributes={attributes} />;
-            })}
-          </Grid>
-        </Flex>
-      </Flex>
+        </ProductHeaderContainer>
+        <GridWrap>
+          {products.map((product, i) => {
+            const { id, attributes } = product;
+            return <ProductCategory key={id} i={i} attributes={attributes} />;
+          })}
+        </GridWrap>
+      </FlexWrap>
     </Layout>
   );
 };
 
 export default Product;
+
+const rotate = keyframes`
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+`;
+
+const Rotate = styled.div`
+  animation: ${rotate} 0.8s linear infinite;
+`;
+
+const FlexWrap = styled(motion.div)`
+  width: 100%;
+`;
+const ProductHeaderContainer = styled.div`
+  width: 100%;
+`;
+
+const GridWrap = styled.div`
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: 0;
+  width: 100%;
+`;
+const Text = styled.div`
+  color: ${(props) => props.theme.color.link};
+`;

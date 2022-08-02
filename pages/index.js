@@ -1,6 +1,9 @@
 import { useQuery, gql } from "@apollo/client";
-import { SimpleGrid, Spinner, Text, Flex } from "@chakra-ui/react";
+
+import { IoSync } from "react-icons/io5";
+import styled, { keyframes } from "styled-components";
 import CategoryGallery from "../components/CategoryGallery";
+
 import Layout from "../components/Layout";
 
 export const GET_CATEGORİES = gql`
@@ -34,33 +37,45 @@ export default function Home() {
 
   if (loading)
     return (
-      <Flex width={"full"}>
-        <Spinner />
-      </Flex>
+      <Rotate>
+        <IoSync />
+      </Rotate>
     );
-  if (error)
-    return (
-      <Flex width={"full"}>
-        <Text>Error:(</Text>
-      </Flex>
-    );
-
+  if (error) return <Text>Error:(</Text>;
   return (
     <Layout>
-      <SimpleGrid
-        columns={2}
-        spacing={4}
-        width={"full"}
-        height={"full"}
-        marginTop={"3.25rem"}
-      >
+      <GridWrap>
         {data.categories.data.map((item, i) => {
           const { attributes, id } = item;
           return (
             <CategoryGallery key={id} attributes={attributes} id={id} i={i} />
           );
         })}
-      </SimpleGrid>
+      </GridWrap>
     </Layout>
   );
 }
+const rotate = keyframes`
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+`;
+
+const Rotate = styled.div`
+  animation: ${rotate} 0.8s linear infinite;
+`;
+
+const GridWrap = styled.div`
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15px;
+  width: 100%;
+  height: 100%;
+`;
+const Text = styled.div`
+  color: ${(props) => props.theme.color.link};
+`;

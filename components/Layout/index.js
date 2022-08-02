@@ -1,9 +1,9 @@
-import { VStack, Flex } from "@chakra-ui/react";
 import { motion } from "framer-motion";
 import Head from "next/head";
 import React from "react";
 import Header from "../Header";
 import MonoLogo from "../Logo";
+import styled from "styled-components";
 
 const pageTransition = {
   initial: {
@@ -13,14 +13,21 @@ const pageTransition = {
     opacity: 1,
   },
 };
+const Wrapper = styled(motion.section)`
+  padding-left: 20px;
+  padding-right: 20px;
+`;
+
+const HeaderFlex = styled(motion.div)`
+  margin: auto;
+`;
+const MainFlex = styled(motion.div)`
+  margin: auto;
+`;
 
 const Layout = ({ children }) => {
   return (
-    <Flex
-      w='full'
-      flexDir={"column"}
-      px={4}
-      as={motion.div}
+    <Wrapper
       variants={pageTransition}
       initial={"initial"}
       animate={"animate"}
@@ -31,15 +38,13 @@ const Layout = ({ children }) => {
         <meta name='description' content='Mono Hotel Terrace' />
         <link rel='icon' href='/favicon.ico' />
       </Head>
-      <VStack w='full' margin={"auto"}>
+      <HeaderFlex>
         <Header>
           <MonoLogo width={"22px"} height={"22px"} />
         </Header>
-      </VStack>
-      <VStack w='full' maxW='63.75rem' margin={"auto"}>
-        {children}
-      </VStack>
-    </Flex>
+      </HeaderFlex>
+      <MainFlex>{children}</MainFlex>
+    </Wrapper>
   );
 };
 

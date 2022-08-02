@@ -1,8 +1,80 @@
-import { Flex, Heading, Image, Text, GridItem, Box } from "@chakra-ui/react";
 import { motion } from "framer-motion";
 import React from "react";
 import TurkishLiraIcon from "../Logo/TurkishLiraIcon";
+import styled from "styled-components";
 
+const Card = styled(motion.div)`
+  display: flex;
+  width: 100%;
+  margin-bottom: 4px;
+`;
+
+const CardImage = styled(motion.img)`
+  display: flex;
+  width: 120px;
+  height: 120px;
+  min-width: 100px;
+  cursor: pointer;
+  border-radius: 10px;
+  object-fit: cover;
+`;
+
+const Flex = styled(motion.div)`
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+`;
+const CardItem = styled(motion.div)`
+  display: flex;
+  flex-direction: column;
+  margin-left: 0.25rem;
+`;
+const Box = styled(motion.div)`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-left: 0.25rem;
+`;
+const Price = styled.h2`
+  margin: 0;
+  padding: 0;
+  color: ${(props) => props.theme.light.colors.price};
+  font-weight: ${(props) => props.theme.fontWeight.lg};
+  line-height: ${(props) => props.theme.lineHeight.lg};
+  @media (max-width: 768px) {
+    font-size: ${(props) => props.theme.fontSize.lg};
+    font-weight: ${(props) => props.theme.fontWeight.lg};
+    line-height: ${(props) => props.theme.lineHeight.lg};
+  }
+`;
+
+const TextTitle = styled.p`
+  margin: 0;
+  padding: 0;
+  color: ${(props) => props.theme.light.colors.title};
+  font-size: ${(props) => props.theme.fontSize.ml};
+  font-weight: ${(props) => props.theme.fontWeight.lg};
+  line-height: ${(props) => props.theme.lineHeight.xl};
+  margin-bottom: 6px;
+  @media (max-width: 768px) {
+    font-size: ${(props) => props.theme.fontSize.ml};
+    font-weight: ${(props) => props.theme.fontWeight.md};
+    line-height: ${(props) => props.theme.lineHeight.md};
+  }
+`;
+const TextSubtitle = styled.p`
+  margin: 0;
+  padding: 0;
+  color: ${(props) => props.theme.light.colors.subtitle};
+  font-size: ${(props) => props.theme.fontSize.ml};
+  font-weight: ${(props) => props.theme.fontWeight.md};
+  line-height: ${(props) => props.theme.lineHeight.xxl};
+  @media (max-width: 768px) {
+    font-size: ${(props) => props.theme.fontSize.ml};
+    font-weight: ${(props) => props.theme.fontWeight.md};
+    line-height: ${(props) => props.theme.lineHeight.md};
+  }
+`;
 const ProductCategory = ({ ...props }) => {
   const fadeUp = {
     initial: { y: 200, opacity: 0 },
@@ -12,77 +84,35 @@ const ProductCategory = ({ ...props }) => {
       transition: { duration: 1.2, delay: props.i * 0.3 },
     },
   };
-
   return (
-    <>
-      <GridItem
-        key={props.attributes.id}
-        as={motion.div}
-        initial={"initial"}
-        animate={"animate"}
-        variants={fadeUp}
-      >
-        <Flex w='full'>
-          <Box minW='80px'>
-            <Image
-              objectFit={"cover"}
-              as={motion.img}
-              initial={{ opacity: 1 }}
-              whileHover={{
-                opacity: 0.6,
-                transition: { duration: 1 },
-              }}
-              py={1}
-              rounded={10}
-              height={{
-                base: "100px",
-                sm: "120px",
-                md: "140px",
-                lg: "180px",
-              }}
-              minH='80px'
-              width={{
-                base: "100px",
-                sm: "120px",
-                md: "140px",
-                lg: "180px",
-              }}
-              minW='80px'
-              src={props.attributes.image.data.attributes.name}
-              alt={props.attributes.image.data.attributes.alternativeText}
-            />
+    <Card
+      key={props.attributes.id}
+      initial={"initial"}
+      animate={"animate"}
+      variants={fadeUp}
+    >
+      <CardImage
+        initial={{ opacity: 1 }}
+        whileHover={{
+          opacity: 0.6,
+          transition: { duration: 1 },
+        }}
+        src={props.attributes.image.data.attributes.name}
+        alt={props.attributes.image.data.attributes.alternativeText}
+      />
+      <Flex>
+        <CardItem>
+          <TextTitle>{props.attributes.title}</TextTitle>
+          <TextSubtitle>{props.attributes.subtitle}</TextSubtitle>
+        </CardItem>
+        <CardItem>
+          <Box>
+            <TurkishLiraIcon width={"12px"} height={"12px"} />
+            <Price>{props.attributes.price}</Price>
           </Box>
-          <Flex w='full' py={1}>
-            <Flex
-              flexDir={"row"}
-              width={"full"}
-              ml={2}
-              justifyContent={"space-between"}
-            >
-              <Flex flexDir={"column"}>
-                <Text variant='title' color='primary.black'>
-                  {props.attributes.title}
-                </Text>
-                <Text variant='subtitle' color='primary.gray'>
-                  {props.attributes.subtitle}
-                </Text>
-              </Flex>
-              <Flex>
-                <Flex width={"full"} alignItems={"start"}>
-                  <Flex alignItems={"center"}>
-                    <TurkishLiraIcon width={"8px"} height={"8px"} />
-                    <Heading as='h3' variant='h3' color='primary.black'>
-                      {props.attributes.price}
-                    </Heading>
-                  </Flex>
-                </Flex>
-              </Flex>
-            </Flex>
-          </Flex>
-        </Flex>
-      </GridItem>
-      <GridItem colStart={2} colEnd={5} h='10'></GridItem>
-    </>
+        </CardItem>
+      </Flex>
+    </Card>
   );
 };
 
