@@ -3,7 +3,7 @@ import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
 import { AnimatePresence } from "framer-motion";
 
 import { ThemeProvider } from "styled-components";
-import { GlobalStyle, theme } from "../styles/theming";
+import { GlobalStyle, theme } from "../styles";
 
 const client = new ApolloClient({
   uri: process.env.NEXT_PUBLIC_BACKEND,

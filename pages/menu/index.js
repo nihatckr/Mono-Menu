@@ -1,14 +1,20 @@
 import styled from "styled-components";
+import Layout from "../../components/Layout";
+import NextLink from "next/link";
 
-const Stack = styled.div`
+const Link = styled(NextLink)`
   font-size: 1.5em;
   text-align: center;
-  color: white;
+  color: black;
   position: relative;
 `;
 
 const Menu = () => {
-  return <Stack></Stack>;
+  return (
+    <Layout>
+      <Link href={"/"}>Geri Dön</Link>
+    </Layout>
+  );
 };
 
 export default Menu;
